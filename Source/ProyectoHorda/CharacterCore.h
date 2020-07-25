@@ -18,6 +18,7 @@ class PROYECTOHORDA_API ACharacterCore : public ACharacter
 public:
 	// Sets default values for this character's properties
 	ACharacterCore();
+	float oldMaxSpeed;
 
 	UPROPERTY(VisibleAnywhere,BlueprintReadOnly)
 		float totalVelocity;
@@ -32,6 +33,8 @@ public:
 	//Movimientos adelante,atras Izquierda y derecha
 	void moveForward(float value);
 	void moveSide(float value);
+	void startRun();
+	void stopRun();
 
 protected:
 	// Called when the game starts or when spawned

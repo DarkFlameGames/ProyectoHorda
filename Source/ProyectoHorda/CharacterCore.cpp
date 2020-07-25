@@ -42,6 +42,9 @@ ACharacterCore::ACharacterCore()
 	//Establece que la rotacion basado en el pawn es falso porque ya esto lo hace el camera boon
 	FollowCamera->bUsePawnControlRotation = false;
 
+	
+	GetCharacterMovement()->MaxWalkSpeed = 350;
+	oldMaxSpeed = GetCharacterMovement()->MaxWalkSpeed;
 }
 
 // Called when the game starts or when spawned
@@ -56,7 +59,7 @@ void ACharacterCore::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	totalVelocity = sqrt(pow(GetCharacterMovement()->Velocity.GetAbs().Y, 2) + pow(GetCharacterMovement()->Velocity.GetAbs().Z, 2) + pow(GetCharacterMovement()->Velocity.GetAbs().X, 2));
-	
+
 }
 
 // Called to bind functionality to input
@@ -66,12 +69,16 @@ void ACharacterCore::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 	PlayerInputComponent->BindAction("Jump", IE_Pressed,this,&ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
+	PlayerInputComponent->BindAction("Run",IE_Pressed ,this, &ACharacterCore::startRun);
+	PlayerInputComponent->BindAction("Run", IE_Released, this, &ACharacterCore::stopRun);
 
 	PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput);
 	//PlayerInputComponent->BindAxis("Up", this, &APawn::AddControllerPitchInput);
 
 	PlayerInputComponent->BindAxis("Forward", this, &ACharacterCore::moveForward);
 	PlayerInputComponent->BindAxis("Side", this, &ACharacterCore::moveSide);
+
+
 }
 
 void ACharacterCore::moveForward(float value)
@@ -91,4 +98,13 @@ void ACharacterCore::moveSide(float value)
 
 	
 	AddMovementInput(Direction, value);
+}
+
+void ACharacterCore::startRun() {
+	GetCharacterMovement()->MaxWalkSpeed = 700;
+}
+
+void ACharacterCore::stopRun() {
+	GetCharacterMovement()->MaxWalkSpeed = oldMaxSpeed;
+
 }
