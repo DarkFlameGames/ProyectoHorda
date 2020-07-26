@@ -30,8 +30,7 @@ void ASpawn::Tick(float DeltaTime)
 		generateEnemy();
 		modifyTotalEnemies(1);
 		timeLeft = DeltaTime + delaySpawn;
-		GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Yellow, FString::Printf(TEXT("time: %f"), timeLeft));
-		GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Yellow, FString::Printf(TEXT("delta: %f"), DeltaTime));
+		
 	}
 	timeLeft -= DeltaTime;
 	totalEnemies();

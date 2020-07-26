@@ -20,6 +20,11 @@ public:
 	ACharacterCore();
 	//Almacena la velocidad normal de caminata del jugador
 	float oldMaxSpeed;
+	//Almacena la vida actual del jugador principal
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		float currentHealth;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		float maxHealth;
 	//Permite visualizar y almacenar la velocidad total del jugador
 	UPROPERTY(VisibleAnywhere,BlueprintReadOnly)
 		float totalVelocity;
@@ -36,6 +41,9 @@ public:
 	void moveSide(float value);
 	void startRun();
 	void stopRun();
+
+	UFUNCTION(BlueprintCallable)
+	void reduceHealth(float damage);
 
 protected:
 	// Called when the game starts or when spawned

@@ -45,6 +45,8 @@ ACharacterCore::ACharacterCore()
 
 	//Asigna la velocidad actual a una variable que utilizaremos posteriormente, para la accion de correr
 	oldMaxSpeed = GetCharacterMovement()->MaxWalkSpeed;
+
+	maxHealth = 100.f;
 }
 
 // Called when the game starts or when spawned
@@ -52,6 +54,8 @@ void ACharacterCore::BeginPlay()
 {
 	Super::BeginPlay();
 	GetCharacterMovement()->MaxWalkSpeed = 350; 
+	currentHealth = maxHealth;
+
 }
 
 // Called every frame
@@ -111,4 +115,8 @@ void ACharacterCore::startRun() {
 //Detiene la accion de correr restableciendo la velocidad antigua del jugador 
 void ACharacterCore::stopRun() {
 	GetCharacterMovement()->MaxWalkSpeed = oldMaxSpeed;
+}
+
+void ACharacterCore::reduceHealth(float damage) {
+	currentHealth -= damage;
 }
