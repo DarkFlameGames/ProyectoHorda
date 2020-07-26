@@ -12,11 +12,18 @@
 UCLASS()
 class PROYECTOHORDA_API AProyectoHordaGameModeBase : public AGameModeBase
 {
-	GENERATED_BODY()
+	GENERATED_BODY()	
 	
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
 public:
+	AProyectoHordaGameModeBase();
+	virtual void Tick(float DeltaTime) override;
 
-	//Almacena los enemigos totales en la partida actualmente
+	UPROPERTY(VisibleAnywhere)
 	int currentEnemies;
+	
 
+	void playerDead();
 };

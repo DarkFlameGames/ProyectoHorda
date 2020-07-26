@@ -3,6 +3,7 @@
 
 #include "CharacterCore.h"
 #include "GenericPlatform/GenericPlatformMath.h"
+
 // Sets default values
 ACharacterCore::ACharacterCore()
 {
@@ -119,4 +120,9 @@ void ACharacterCore::stopRun() {
 
 void ACharacterCore::reduceHealth(float damage) {
 	currentHealth -= damage;
+}
+
+void ACharacterCore::characterDie() {
+	AGameModeBase* gameMode = GetWorld()->GetAuthGameMode();
+	
 }

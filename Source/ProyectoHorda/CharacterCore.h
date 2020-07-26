@@ -41,6 +41,7 @@ public:
 	void moveSide(float value);
 	void startRun();
 	void stopRun();
+	void characterDie();
 
 	UFUNCTION(BlueprintCallable)
 	void reduceHealth(float damage);
