@@ -16,6 +16,7 @@ class PROYECTOHORDA_API AProyectoHordaGameModeBase : public AGameModeBase
 	
 public:
 
+	//Almacena los enemigos totales en la partida actualmente
 	int currentEnemies;
 
 };

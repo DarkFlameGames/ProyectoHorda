@@ -18,8 +18,9 @@ class PROYECTOHORDA_API ACharacterCore : public ACharacter
 public:
 	// Sets default values for this character's properties
 	ACharacterCore();
+	//Almacena la velocidad normal de caminata del jugador
 	float oldMaxSpeed;
-
+	//Permite visualizar y almacenar la velocidad total del jugador
 	UPROPERTY(VisibleAnywhere,BlueprintReadOnly)
 		float totalVelocity;
 	//Funciona como un palo de selfie, es una camara que te sigue y detecta las colisiones y se acerca a ti
