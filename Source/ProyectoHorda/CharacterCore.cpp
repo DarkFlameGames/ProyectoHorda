@@ -51,7 +51,7 @@ ACharacterCore::ACharacterCore()
 void ACharacterCore::BeginPlay()
 {
 	Super::BeginPlay();
-
+	GetCharacterMovement()->MaxWalkSpeed = 350; 
 }
 
 // Called every frame
