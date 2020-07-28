@@ -130,7 +130,7 @@ void ACharacterCore::reduceHealth(float damage) {
 void ACharacterCore::characterRotation(float value) {
 	
 	AddControllerYawInput(value);
-	//SetActorRotation(FRotator(0.0f, Controller->GetControlRotation().Yaw, 0));
+	SetActorRotation(FRotator(0.0f, Controller->GetControlRotation().Yaw, 0));
 }
 
 void ACharacterCore::startShooting() {
