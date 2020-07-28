@@ -34,6 +34,10 @@ ACharacterCore::ACharacterCore()
 	//Rota el "palo de selfie" basado en la posicion del personaje
 	CameraBoon->bUsePawnControlRotation = true;
 
+	Gun = CreateDefaultSubobject<UCharacterGun>(TEXT("PlayerGun"));
+	Gun->SetupAttachment(RootComponent);
+
+
 	//Crea la camara principal y la establece en el cameraboon
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
 	FollowCamera->SetupAttachment(CameraBoon, USpringArmComponent::SocketName);
@@ -79,9 +83,10 @@ void ACharacterCore::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 	PlayerInputComponent->BindAction("Run",IE_Pressed ,this, &ACharacterCore::startRun);
 	PlayerInputComponent->BindAction("Run", IE_Released, this, &ACharacterCore::stopRun);
+	PlayerInputComponent->BindAction("Shoot", IE_Pressed, this, &ACharacterCore::startShooting);
 
 	//Establece las entradas de las acciones que se ejecutan al presionar una tecla o mover un eje
-	PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput);
+	PlayerInputComponent->BindAxis("Turn", this, &ACharacterCore::characterRotation);
 	//PlayerInputComponent->BindAxis("Up", this, &APawn::AddControllerPitchInput);
 	PlayerInputComponent->BindAxis("Forward", this, &ACharacterCore::moveForward);
 	PlayerInputComponent->BindAxis("Side", this, &ACharacterCore::moveSide);
@@ -122,7 +127,12 @@ void ACharacterCore::reduceHealth(float damage) {
 	currentHealth -= damage;
 }
 
-void ACharacterCore::characterDie() {
-	AGameModeBase* gameMode = GetWorld()->GetAuthGameMode();
+void ACharacterCore::characterRotation(float value) {
 	
+	AddControllerYawInput(value);
+	SetActorRotation(FRotator(0.0f, Controller->GetControlRotation().Yaw, 0));
+}
+
+void ACharacterCore::startShooting() {
+	Gun->shoot();
 }

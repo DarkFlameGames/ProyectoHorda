@@ -9,6 +9,7 @@ AEnemyCore::AEnemyCore()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	enemyHealth = 100;
 }
 
 // Called when the game starts or when spawned
@@ -23,7 +24,9 @@ void AEnemyCore::BeginPlay()
 void AEnemyCore::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
+	if (enemyHealth<=0) {
+		Destroy();
+	}
 }
 
 // Called to bind functionality to input
@@ -32,4 +35,10 @@ void AEnemyCore::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
 }
+
+void AEnemyCore::enemyDamage(float damage)
+{
+	enemyHealth -= damage;
+}
+
 

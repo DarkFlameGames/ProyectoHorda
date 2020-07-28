@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "CharacterGun.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Camera/CameraComponent.h"
 #include "CharacterCore.generated.h"
@@ -32,6 +33,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
 		USpringArmComponent* CameraBoon;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Gun)
+		UCharacterGun* Gun;
+
 	//Componente basico de la camara que seguira al personaje
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
 		UCameraComponent* FollowCamera;
@@ -41,7 +45,8 @@ public:
 	void moveSide(float value);
 	void startRun();
 	void stopRun();
-	void characterDie();
+	void characterRotation(float value);
+	void startShooting();
 
 	UFUNCTION(BlueprintCallable)
 	void reduceHealth(float damage);
