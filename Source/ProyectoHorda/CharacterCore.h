@@ -33,7 +33,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
 		USpringArmComponent* CameraBoon;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Gun)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gun)
 		UCharacterGun* Gun;
 
 	//Componente basico de la camara que seguira al personaje
@@ -50,7 +50,8 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void reduceHealth(float damage);
-
+	UFUNCTION(BlueprintCallable)
+		void setGun(UCharacterGun* GunObject);
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

@@ -34,8 +34,8 @@ ACharacterCore::ACharacterCore()
 	//Rota el "palo de selfie" basado en la posicion del personaje
 	CameraBoon->bUsePawnControlRotation = true;
 
-	Gun = CreateDefaultSubobject<UCharacterGun>(TEXT("PlayerGun"));
-	Gun->SetupAttachment(GetMesh());
+	
+
 
 
 	//Crea la camara principal y la establece en el cameraboon
@@ -135,4 +135,8 @@ void ACharacterCore::characterRotation(float value) {
 
 void ACharacterCore::startShooting() {
 	Gun->shoot();
+}
+
+void ACharacterCore::setGun(UCharacterGun* GunObject) {
+	Gun = GunObject;
 }
