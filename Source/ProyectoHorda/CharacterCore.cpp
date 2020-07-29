@@ -60,6 +60,7 @@ void ACharacterCore::BeginPlay()
 	Super::BeginPlay();
 	GetCharacterMovement()->MaxWalkSpeed = 350; 
 	currentHealth = maxHealth;
+	isAttacking = false;
 
 }
 
@@ -84,6 +85,7 @@ void ACharacterCore::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	PlayerInputComponent->BindAction("Run",IE_Pressed ,this, &ACharacterCore::startRun);
 	PlayerInputComponent->BindAction("Run", IE_Released, this, &ACharacterCore::stopRun);
 	PlayerInputComponent->BindAction("Shoot", IE_Pressed, this, &ACharacterCore::startShooting);
+	PlayerInputComponent->BindAction("Shoot", IE_Released, this, &ACharacterCore::stopShooting);
 
 	//Establece las entradas de las acciones que se ejecutan al presionar una tecla o mover un eje
 	PlayerInputComponent->BindAxis("Turn", this, &ACharacterCore::characterRotation);
@@ -135,6 +137,11 @@ void ACharacterCore::characterRotation(float value) {
 
 void ACharacterCore::startShooting() {
 	Gun->shoot();
+	isAttacking = true;
+}
+
+void ACharacterCore::stopShooting() {
+	isAttacking = false;
 }
 
 void ACharacterCore::setGun(UCharacterGun* GunObject) {

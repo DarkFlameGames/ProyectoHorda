@@ -21,6 +21,8 @@ public:
 	ACharacterCore();
 	//Almacena la velocidad normal de caminata del jugador
 	float oldMaxSpeed;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	bool isAttacking;
 	//Almacena la vida actual del jugador principal
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 		float currentHealth;
@@ -47,6 +49,7 @@ public:
 	void stopRun();
 	void characterRotation(float value);
 	void startShooting();
+	void stopShooting();
 
 	UFUNCTION(BlueprintCallable)
 	void reduceHealth(float damage);
