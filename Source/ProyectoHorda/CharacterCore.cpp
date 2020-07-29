@@ -35,7 +35,7 @@ ACharacterCore::ACharacterCore()
 	CameraBoon->bUsePawnControlRotation = true;
 
 	Gun = CreateDefaultSubobject<UCharacterGun>(TEXT("PlayerGun"));
-	Gun->SetupAttachment(RootComponent);
+	Gun->SetupAttachment(GetMesh());
 
 
 	//Crea la camara principal y la establece en el cameraboon
