@@ -24,6 +24,8 @@ public:
 	UPROPERTY(VisibleAnywhere)
 	int currentEnemies;
 	
+	UPROPERTY(VisibleAnywhere)
+	float totalScore;
 
 	void playerDead();
 };

@@ -136,8 +136,10 @@ void ACharacterCore::characterRotation(float value) {
 }
 
 void ACharacterCore::startShooting() {
-	Gun->shoot();
-	isAttacking = true;
+	if (GetCharacterMovement()->IsMovingOnGround()) {
+		Gun->shoot();
+		isAttacking = true;
+	}
 }
 
 void ACharacterCore::stopShooting() {

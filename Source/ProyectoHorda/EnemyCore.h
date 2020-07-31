@@ -16,7 +16,10 @@ public:
 	// Sets default values for this character's properties
 	AEnemyCore();
 	float enemyHealth;
-
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float givenScore;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		TArray<TSubclassOf<AActor>> drops;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -30,4 +33,6 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void enemyDamage(float damage);
+	void scoreUpdate();
+	void spawnDrops();
 };

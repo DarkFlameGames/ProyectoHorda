@@ -2,6 +2,7 @@
 
 
 #include "EnemyCore.h"
+#include "ProyectoHordaGameModeBase.h"
 
 // Sets default values
 AEnemyCore::AEnemyCore()
@@ -25,6 +26,11 @@ void AEnemyCore::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	if (enemyHealth<=0) {
+		scoreUpdate();
+		int position = FMath::RandRange(0, 9);
+		if (position == 0) {
+			spawnDrops();
+		}
 		Destroy();
 	}
 }
@@ -41,4 +47,13 @@ void AEnemyCore::enemyDamage(float damage)
 	enemyHealth -= damage;
 }
 
+void AEnemyCore::scoreUpdate() {
+	AGameModeBase* gameMode = GetWorld()->GetAuthGameMode();
+	AProyectoHordaGameModeBase* gameModeBase = Cast<AProyectoHordaGameModeBase>(gameMode);
+	gameModeBase->totalScore += givenScore;
+}
 
+void AEnemyCore::spawnDrops() {
+	int position = FMath::RandRange(0, 2);
+	GetWorld()->SpawnActor<AActor>(drops[position], this->GetActorLocation(), this->GetActorRotation());
+}
