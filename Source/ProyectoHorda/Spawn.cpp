@@ -52,7 +52,7 @@ void ASpawn::modifyTotalEnemies(float add) {
 void ASpawn::totalEnemies() {
 	AGameModeBase* gameMode = GetWorld()->GetAuthGameMode();
 	AProyectoHordaGameModeBase* gameModeBase = Cast<AProyectoHordaGameModeBase>(gameMode);
-	if (gameModeBase->currentEnemies < 200) {
+	if (gameModeBase->currentEnemies < 1) {
 		spawnEnable = true;
 	}
 	else {

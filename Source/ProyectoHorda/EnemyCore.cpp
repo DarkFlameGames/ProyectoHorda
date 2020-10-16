@@ -27,7 +27,7 @@ void AEnemyCore::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	if (enemyHealth<=0) {
 		scoreUpdate();
-		int position = FMath::RandRange(0, 9);
+		int position = FMath::RandRange(0, 0);
 		if (position == 0) {
 			spawnDrops();
 		}
@@ -54,6 +54,6 @@ void AEnemyCore::scoreUpdate() {
 }
 
 void AEnemyCore::spawnDrops() {
-	int position = FMath::RandRange(0, 2);
+	int position = FMath::RandRange(0, drops.Num()-1);
 	GetWorld()->SpawnActor<AActor>(drops[position], this->GetActorLocation(), this->GetActorRotation());
 }
