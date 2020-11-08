@@ -17,8 +17,6 @@ AEnemyCore::AEnemyCore()
 void AEnemyCore::BeginPlay()
 {
 	Super::BeginPlay();
-	GetCharacterMovement()->JumpZVelocity = 600;
-	GetCharacterMovement()->AirControl = 0.4f;
 }
 
 // Called every frame

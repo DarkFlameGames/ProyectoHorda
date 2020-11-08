@@ -20,6 +20,10 @@ public:
 	
 	UPROPERTY(EditAnywhere)
 		TSubclassOf<class AActor> enemy;
+
+	UPROPERTY(EditAnywhere)
+		int enemyAmount;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -29,6 +33,6 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	void generateEnemy();
-	void modifyTotalEnemies(float number);
+	void modifyTotalEnemies();
 	void totalEnemies();
 };

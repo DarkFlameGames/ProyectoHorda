@@ -19,10 +19,6 @@ ACharacterCore::ACharacterCore()
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 	//Indica la velocidad y el eje sobre el cual rotara el personaje
 	GetCharacterMovement()->RotationRate = FRotator(0, 500, 0);
-	//Establece la velocidad a la cual vamos a saltar
-	GetCharacterMovement()->JumpZVelocity = 600;
-	//Establece que tanto vamos a controlar al personaje cuando se encuentra en el aire
-	GetCharacterMovement()->AirControl = 0.2f;
 
 	//Definimos el componente de camara boon y los fijamos al componente raiz
 	CameraBoon = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
@@ -33,9 +29,6 @@ ACharacterCore::ACharacterCore()
 
 	//Rota el "palo de selfie" basado en la posicion del personaje
 	CameraBoon->bUsePawnControlRotation = true;
-
-	
-
 
 
 	//Crea la camara principal y la establece en el cameraboon
@@ -61,7 +54,6 @@ void ACharacterCore::BeginPlay()
 	GetCharacterMovement()->MaxWalkSpeed = 350; 
 	currentHealth = maxHealth;
 	isAttacking = false;
-
 }
 
 // Called every frame
@@ -80,8 +72,6 @@ void ACharacterCore::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
 	//Establece las entradas de las acciones que se ejecutan al presionar o soltar una tecla
-	PlayerInputComponent->BindAction("Jump", IE_Pressed,this,&ACharacter::Jump);
-	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 	PlayerInputComponent->BindAction("Run",IE_Pressed ,this, &ACharacterCore::startRun);
 	PlayerInputComponent->BindAction("Run", IE_Released, this, &ACharacterCore::stopRun);
 	PlayerInputComponent->BindAction("Shoot", IE_Pressed, this, &ACharacterCore::startShooting);

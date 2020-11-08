@@ -15,7 +15,7 @@ AProyectoHordaGameModeBase::AProyectoHordaGameModeBase()
 void AProyectoHordaGameModeBase::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 }
 
 void AProyectoHordaGameModeBase::Tick(float DeltaTime)
